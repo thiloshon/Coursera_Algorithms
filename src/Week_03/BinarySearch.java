@@ -12,6 +12,31 @@ public class BinarySearch {
         return -1;
     }
 
+    static int binarySearch(int[] array, int key, int low, int high) {
+
+        //write your code here
+
+
+        if (low>high){
+            //return low-1;
+            return -1;
+        }else {
+            int mid = low+ (int)Math.floor((high-low)/2);
+            if (key==array[mid]){
+                return mid;
+            }else if (key<array[mid]){
+                return binarySearch(array, key, low, mid-1);
+
+            }else if (key>array[mid]){
+                return binarySearch(array, key, low +1, high);
+            }else {}
+        }
+
+        //This return statement wont work in any cases
+        return -1;
+    }
+
+
     static int linearSearch(int[] a, int x) {
         for (int i = 0; i < a.length; i++) {
             if (a[i] == x) return i;
@@ -33,7 +58,8 @@ public class BinarySearch {
         }
         for (int i = 0; i < m; i++) {
             //replace with the call to binarySearch when implemented
-            System.out.print(linearSearch(a, b[i]) + " ");
+            System.out.print(binarySearch(a, b[i] , 0, a.length-1) + " ");
+            //System.out.print(linearSearch(a, b[i]) + " ");
         }
     }
     static class FastScanner {
