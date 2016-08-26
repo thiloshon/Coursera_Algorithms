@@ -11,24 +11,21 @@ public class Fibonacci_Mine {
     public static void main(String[] args) {
 
 
-        long x = 10;
+        long x;
         long y = 1;
         long z = 0;
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
 
+        long yt = 0;
+
         for (x = 0; x < n; x++) {
-            long yt = y + z;
-            //if (x==n-1){
-            System.out.println(yt);
-            //    }
+            yt = y + z;
             long temp = y;
             y = z;
             z = temp + y;
 
         }
-
-
-        System.out.println("Hello World!");
+        System.out.println(yt);
     }
 }

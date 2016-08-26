@@ -1,5 +1,7 @@
 package Week_01;
 
+import java.util.Scanner;
+
 /**
  * Created by Thiloshon on 04-May-16.
  * <p>
@@ -9,37 +11,19 @@ public class GreatestCommonDivisor_Efficient {
 
 
     public static void main(String args[]) {
-        long x = 28851538;
-        long y = 1183019;
-        long great = 0;
-        long low = 0;
-        long GCD = 1;
-        long temp = 1;
-
-        great = y;
-        low = x;
-
-        if (x > y) {
-            great = x;
-            low = y;
-        }
 
 
-        while (low > 0) {
-            temp = great % low;
-            if (temp == 0) {
-                GCD = great;
-            }
+        Scanner scanner = new Scanner(System.in);
+        long x = scanner.nextLong();
 
-            great = low;
-            low = temp;
-            System.out.println("" + great + " " + low);
-        }
+        long y = scanner.nextLong();
+
+        System.out.println(GCD(x, y));
     }
 
-    public static long GCD(int a, int b){
+    public static long GCD(long a, long b) {
 
-        long x =a;
+        long x = a;
         long y = b;
         long great = 0;
         long low = 0;
@@ -63,10 +47,10 @@ public class GreatestCommonDivisor_Efficient {
 
             great = low;
             low = temp;
-            System.out.println("" + great + " " + low);
+            //System.out.println("" + great + " " + low);
         }
 
-        return  great;
+        return great;
 
     }
 
