@@ -1,7 +1,16 @@
 /**
  * Created by Thiloshon on 03-May-16.
- * <p>
  * Huge Fibonacci_Mine Number modulo m
+ *
+ * One Heck of a Question... Really hard...
+ *
+ * References:
+ * https://en.wikipedia.org/wiki/Modulo_operation
+ * (a + b) mod n = [(a mod n) + (b mod n)] mod n // This is a killer equation.
+ * https://www.coursera.org/learn/algorithmic-toolbox/discussions/weeks/2/threads/qSIrrdmDEeWQzA7MOZsNDQ
+ * https://www.coursera.org/learn/algorithmic-toolbox/discussions/weeks/2/threads/7eKhCEHZEeaPHQrkCWo3rw
+ *
+ *
  */
 
 package Week_01;
@@ -25,37 +34,41 @@ public class Fibonacci_HugeModulo {
         int count = 0;
         boolean condition01 = false, condition02 = false, condition03 = false;
 
+        //long x;
+        long y = 1;
+        long z = 0;
 
         while (true) {
-            //System.out.print(count + "       ");
-            //BigInteger number = fibonochiNumber(count);
-            BigInteger number = fibonochiNumber(count);
-            //number=number%modulo;
-            number = number.divideAndRemainder(BigInteger.valueOf(modulo))[1];
+
+            //(a + b) mod n = [(a mod n) + (b mod n)] mod n
+            //(y + z) % modulo = [(y % modulo) + (z % modulo)] % modulo
+
+            y = y % modulo;
+            z = z % modulo;
+            long number = (y + z) % modulo;
+
+            long temp = y;
+            y = z;
+            z = temp + y;
+
             //System.out.println(number);
 
-            if (!(condition01 && condition02 && condition03) && number.intValue() == 0 && count > 2) {
+            if (!(condition01 && condition02 && condition03) && number == 0 && count > 2) {
                 condition01 = true;
-            } else if (condition01 && !(condition02) && !(condition03) && number.intValue() == 1) {
+            } else if (condition01 && !(condition02) && !(condition03) && number == 1) {
                 condition02 = true;
-            } else if (condition01 && condition02 && (!(condition03)) && number.intValue() == 1) {
+            } else if (condition01 && condition02 && (!(condition03)) && number == 1) {
                 condition03 = true;
-                return count - 2;
-
+                return count - 1;
             } else {
                 condition01 = false;
                 condition02 = false;
                 condition03 = false;
             }
-
-
             count++;
         }
-
-
         //return 0;
     }
-
 
     private static BigInteger fibonochiNumber(long no) {
         long x;
@@ -71,7 +84,6 @@ public class Fibonacci_HugeModulo {
         }
         return yt;
     }
-
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);

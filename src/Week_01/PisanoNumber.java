@@ -7,7 +7,7 @@ import java.math.BigInteger;
  */
 public class PisanoNumber {
     public static void main(String[] args) {
-        System.out.println(pisanoNumber(1000));
+        System.out.println(pisanoNumberlong(1000000));
     }
 
     private static long pisanoNumber(long modulo) {
@@ -15,21 +15,86 @@ public class PisanoNumber {
         boolean condition01 = false, condition02 = false, condition03 = false;
 
 
+        //long x;
+        BigInteger y = BigInteger.valueOf(1);
+        BigInteger z = BigInteger.valueOf(0);
+
+        //BigInteger yt = BigInteger.valueOf(0);
+
         while (true) {
-            System.out.println(count);
+
+            //(a + b) mod n = [(a mod n) + (b mod n)] mod n
+            //(y + z) % modulo = [(y % modulo) + (z % modulo)] % modulo
+
+
+            //yt = y.add(z);
+            BigInteger number = ((y.divideAndRemainder(BigInteger.valueOf(modulo)))[1].add(z.divideAndRemainder(BigInteger.valueOf(modulo))[1])).divideAndRemainder(BigInteger.valueOf(modulo))[1];
+
+            BigInteger temp = y;
+            y = z;
+            z = temp.add(y);
+
+           // System.out.println(count);
             //BigInteger number = fibonochiNumber(count);
-            BigInteger number = fibonochiNumber(count);
+            //number = yt;
             //number=number%modulo;
-            number=number.divideAndRemainder(BigInteger.valueOf(modulo))[1];
+           // number = number.divideAndRemainder(BigInteger.valueOf(modulo))[1]; TODO uncomment this
+
             //System.out.println(number);
 
-            if (!(condition01 && condition02 && condition03) && number.intValue() == 0 && count>2) {
+            if (!(condition01 && condition02 && condition03) && number.intValue() == 0 && count > 2) {
                 condition01 = true;
             } else if (condition01 && !(condition02) && !(condition03) && number.intValue() == 1) {
                 condition02 = true;
             } else if (condition01 && condition02 && (!(condition03)) && number.intValue() == 1) {
-                condition03=true;
-                return count - 2;
+                condition03 = true;
+                return count - 1;
+
+            } else {
+                condition01 = false;
+                condition02 = false;
+                condition03 = false;
+            }
+
+
+            count++;
+        }
+
+
+        //return 0;
+    }
+
+
+    private static long pisanoNumberlong(long modulo) {
+        int count = 0;
+        boolean condition01 = false, condition02 = false, condition03 = false;
+
+        //long x;
+        long y = 1;
+        long z = 0;
+
+        while (true) {
+
+            //(a + b) mod n = [(a mod n) + (b mod n)] mod n
+            //(y + z) % modulo = [(y % modulo) + (z % modulo)] % modulo
+
+            y = y % modulo;
+            z = z % modulo;
+            long number = (y+z)%modulo;
+
+            long temp = y;
+            y = z;
+            z = temp + y;
+
+            //System.out.println(number);
+
+            if (!(condition01 && condition02 && condition03) && number == 0 && count > 2) {
+                condition01 = true;
+            } else if (condition01 && !(condition02) && !(condition03) && number == 1) {
+                condition02 = true;
+            } else if (condition01 && condition02 && (!(condition03)) && number == 1) {
+                condition03 = true;
+                return count - 1;
 
             } else {
                 condition01 = false;
