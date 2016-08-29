@@ -5,7 +5,7 @@ import java.util.*;
 /**
  * Created by Thiloshon on 29-Aug-16.
  */
-public class CoeringSegmentsReferred {
+public class CoveringSegmentsReferred {
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);

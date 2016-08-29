@@ -28,8 +28,8 @@ public class BinarySearch {
                 return binarySearch(array, key, low, mid-1);
 
             }else if (key>array[mid]){
-                return binarySearch(array, key, low +1, high);
-            }else {}
+                return binarySearch(array, key, mid +1, high);
+            }
         }
 
         //This return statement wont work in any cases

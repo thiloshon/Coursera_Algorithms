@@ -33,7 +33,7 @@ public class DifferentSummands {
         List<Integer> summands = optimalSummands(n);
         System.out.println(summands.size());
         for (Integer summand : summands) {
-            System.out.println(summand + " ");
+            System.out.print(summand + " ");
         }
     }
 }
