@@ -3,35 +3,26 @@ package Week_02;
 import java.util.Scanner;
 
 public class FractionalKnapsack {
-    private static double getOptimalValue(int capacity, int[] values, int[] weights) {
+    private static double getOptimalValue(double capacity, double[] values, double[] weights) {
         double value = 0;
-        //write your code here
 
-
-
-        while (capacity>0){
+        while (capacity > 0) {
             int num = findMax(values, weights);
-            //System.out.println("num is "+ num);
-            if (capacity>weights[num]){
-               // System.out.print("capacity changed from "+ capacity+ " to ");
-                capacity=capacity-weights[num];
-               // System.out.println(capacity);
-               // System.out.print("value changed from "+ value+ " to ");
-                value=value+values[num];
-               // System.out.println(value);
 
+            if (capacity > weights[num]) {
+                capacity = capacity - weights[num];
+                value = value + values[num];
 
-            }else {
-                value=value+ (values[num]/weights[num])*capacity;
-                capacity=0;
+            } else {
+
+                //System.out.println((double)(values[num] / weights[num]));
+                value = value + ((values[num] / weights[num]) * capacity);
+                capacity = 0;
             }
-            values[num]=0;
-           // System.out.println("");
-           // System.out.println("");
-          //  System.out.println("");System.out.println("");System.out.println("");
-
-
+            values[num] = 0;
         }
+
+
 
         /*while ((weights[num] > maxIndex||n==arr[x]){
             ans++;
@@ -45,31 +36,26 @@ public class FractionalKnapsack {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int capacity = scanner.nextInt();
-        int[] values = new int[n];
-        int[] weights = new int[n];
+        double[] values = new double[n];
+        double[] weights = new double[n];
         for (int i = 0; i < n; i++) {
             values[i] = scanner.nextInt();
             weights[i] = scanner.nextInt();
         }
         System.out.println(getOptimalValue(capacity, values, weights));
     }
-    public static int findMax(int[] values, int[] weights) {
+
+    public static int findMax(double[] values, double[] weights) {
         int maxIndex = 0;
-        int value=0;
+        double value = 0;
 
         for (int i = 0; i < values.length; i++) {
-          //  System.out.println(values[i]/ weights[i]);
-          //  System.out.println(values[i] + " "+ weights[i]+ " "+ maxIndex);
-            if (values[i] / weights[i] > value) {
-           //     System.out.print( "max changed from "+ maxIndex + " to ");
-                value=values[i] / weights[i];
 
+            if (values[i] / weights[i] > value) {
+                value = values[i] / weights[i];
                 maxIndex = i;
-            //    System.out.println(maxIndex);
             }
         }
-
-
         return maxIndex;
     }
 } 

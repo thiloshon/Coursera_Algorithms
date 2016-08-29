@@ -1,18 +1,19 @@
 package Week_02;
+
 import java.util.Scanner;
 
 public class Change {
     private static int getChange(int n) {
         //write your code here
-        int[] arr={10,5,1};
-        int ans=0;
-        for (int x=0;x<3;x++){
-            while ((n>arr[x])||n==arr[x]){
+        int[] arr = {10, 5, 1};
+        int ans = 0;
+        for (int x = 0; x < 3; x++) {
+            while ((n > arr[x]) || n == arr[x]) {
                 ans++;
-                n=n-arr[x];
+                n = n - arr[x];
             }
         }
-        n=ans;
+        n = ans;
         return n;
     }
 

@@ -1,4 +1,5 @@
 package Week_02;
+
 import java.util.*;
 
 public class CoveringSegments {
@@ -6,22 +7,22 @@ public class CoveringSegments {
     private static int[] optimalPoints(Segment[] segments) {
 
 
-        while (segments.length>0){
-            int minY=100, index=0;
-            for (int x=0; x<segments.length;x++){
-                if (segments[x].end<minY){
-                    index=x;
+        while (segments.length > 0) {
+            int minY = 100, index = 0;
+            for (int x = 0; x < segments.length; x++) {
+                if (segments[x].end < minY) {
+                    index = x;
                 }
             }
 
             ArrayList<Integer> arr = new ArrayList<>();
-            for (int x=0; x<segments.length;x++){
-                if (segments[x].start<=segments[index].end){
-                    int max =0, maxWhile=0;
+            for (int x = 0; x < segments.length; x++) {
+                if (segments[x].start <= segments[index].end) {
+                    int max = 0, maxWhile = 0;
 
-                    for (int z=segments[index].start; z<segments[index].end;z++){
-                        for (Segment seg : segments){
-                            if (z>=seg.start&&z<=seg.end){
+                    for (int z = segments[index].start; z < segments[index].end; z++) {
+                        for (Segment seg : segments) {
+                            if (z >= seg.start && z <= seg.end) {
                                 max++;
                             }
                         }
@@ -29,22 +30,20 @@ public class CoveringSegments {
                     }
 
 
-
-
                     arr.add(x);
                 }
             }
 
-            for (int value: arr){
+            for (int value : arr) {
 
             }
 
         }
         //write your code here
 
-for (int y =0; y<segments.length; y++){
-            int max=0, value=0;
-            for (int x=segments[y].start; x<segments[y].end; x++){
+        for (int y = 0; y < segments.length; y++) {
+            int max = 0, value = 0;
+            for (int x = segments[y].start; x < segments[y].end; x++) {
 
             }
         }
@@ -67,6 +66,7 @@ for (int y =0; y<segments.length; y++){
             this.end = end;
         }
     }
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
