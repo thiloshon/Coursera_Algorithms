@@ -7,10 +7,8 @@ public class test {
 
     public static void main(String[] args) {
         int count=0;
-        for (int x=0; x<100000; x++){
-            count++;
-            System.out.println(count);
-        }
+        double temp = (3-0)/2.0;
+        System.out.println(Math.ceil(temp));
 
     }
 
