@@ -6,7 +6,7 @@ package Week_03;
 public class test {
 
     public static void main(String[] args) {
-        int count=0;
+        int count=1000000000;
         double temp = (3-0)/2.0;
         System.out.println(Math.ceil(temp));
 
