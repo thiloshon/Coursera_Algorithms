@@ -5,7 +5,7 @@ import java.util.Scanner;
 /**
  * Created by Thiloshon on 03-Sep-16.
  */
-public class MergeSorting {
+public class MergeSortingStressTest {
     private static long getNumberOfInversions(int[] a, int[] b, int left, int right) {
         long numberOfInversions = 0;
         if (right <= left + 1) {
