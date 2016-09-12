@@ -61,7 +61,7 @@ public class PointsAndSegmentsEffective {
 
         int[][] finalArray = new int[masterArray.length][2];
 
-        mergeSort(masterArray, finalArray, 0, masterArray.length-1);
+        getNumberOfInversions(masterArray, finalArray, 0, masterArray.length-1);
 
         int count=0;
         for(int cont =0; cont<length; cont++){
@@ -78,7 +78,7 @@ public class PointsAndSegmentsEffective {
         return cnt;
     }
 
-    private static long mergeSort(int[][] a, int[][] b, int left, int right) {
+    private static long getNumberOfInversions(int[][] a, int[][] b, int left, int right) {
         long numberOfInversions = 0;
         if (right <= left + 1) {
             if (right - left > 0) {
@@ -94,8 +94,8 @@ public class PointsAndSegmentsEffective {
             return numberOfInversions;
         }
         int ave = (left + right) / 2;
-        numberOfInversions += mergeSort(a, b, left, ave);
-        numberOfInversions += mergeSort(a, b, ave + 1, right);
+        numberOfInversions += getNumberOfInversions(a, b, left, ave);
+        numberOfInversions += getNumberOfInversions(a, b, ave + 1, right);
         int LHS = left;
         int mid=ave+1;
         //int RHS = right;
