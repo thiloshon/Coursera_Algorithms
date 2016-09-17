@@ -1,0 +1,32 @@
+/**
+ * Created by Thiloshon on 03-May-16.
+ *
+ * Problem: Small Fibonacci_Mine Number naive
+ *
+ */
+package AlgorithmicToolBox.Week_01;
+import java.util.Scanner;
+
+
+public class Fibonacci_Naive {
+
+    private static long calc_fib(int n) {
+        if (n <= 1)
+            return n;
+
+        return calc_fib(n - 1) + calc_fib(n - 2);
+    }
+
+
+    public static void main(String args[]) {
+        Scanner in = new Scanner(System.in);
+        int n = in.nextInt();
+
+        System.out.println(calc_fib(n));
+    }
+
+
+}
+
+
+
