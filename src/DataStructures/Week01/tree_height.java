@@ -39,26 +39,52 @@ public class tree_height {
                 parent[i] = in.nextInt();
             }
 
-            for(int h : parent) {
+            /*for (int h : parent) {
                 System.out.println(h);
 
-            }
+            }*/
         }
 
         int computeHeight() {
             // Replace this code with a faster implementation
 
+            ArrayList[] arr = new ArrayList[n];
+            try {
+                for (int in : parent) {
+                    if( arr[parent[in]]==null){
+                        arr[parent[in]]= new ArrayList();
+                        System.out.println("i  was  here");
+                    }
+
+                    arr[parent[in]].add(parent[in]);
+                }
+            }catch (ArrayIndexOutOfBoundsException e){
+
+            }
+
+
+                //arr[parent[in]].add(in);
+                //System.out.println(arr);
+
+            for(int g=0; g<n;g++){
+                System.out.println("hello");
+                System.out.println(arr[g]);
+            }
+            /*for(ArrayList ar : arr){
+                System.out.println("hi");
+                System.out.println(ar);
+            }*/
 
 
 
 
             int maxHeight = 0;
-            for (int vertex = 0; vertex < n; vertex++) {
+            /*for (int vertex = 0; vertex < n; vertex++) {
                 int height = 0;
                 for (int i = vertex; i != -1; i = parent[i])
                     height++;
                 maxHeight = Math.max(maxHeight, height);
-            }
+            }*/
             return maxHeight;
         }
     }

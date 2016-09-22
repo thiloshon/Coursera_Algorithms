@@ -1,3 +1,4 @@
+package DataStructures.Week01;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -9,11 +10,11 @@ import java.util.StringTokenizer;
  */
 // Java program to find height using parent array
 // Java program to find height using parent array
-class BinaryTree {
+public class ArbitaryTreeHeight {
 
     // This function fills depth of i'th element in parent[].  The depth is
     // filled in depth[i].
-    void fillDepth(int parent[], int i, int depth[]) {
+    void fillHeight(int parent[], int i, int depth[]) {
 
         // If depth[i] is already filled
         if (depth[i] != 0) {
@@ -29,7 +30,7 @@ class BinaryTree {
         // If depth of parent is not evaluated before, then evaluate
         // depth of parent first
         if (depth[parent[i]] == 0) {
-            fillDepth(parent, parent[i], depth);
+            fillHeight(parent, parent[i], depth);
         }
 
         // Depth of this node is depth of parent plus 1
@@ -50,7 +51,7 @@ class BinaryTree {
 
         // fill depth of all nodes
         for (int i = 0; i < n; i++) {
-            fillDepth(parent, i, depth);
+            fillHeight(parent, i, depth);
         }
 
         // The height of binary tree is maximum of all depths.
@@ -79,7 +80,7 @@ class BinaryTree {
         new Thread(null, new Runnable() {
             public void run() {
                 try {
-                    new DataStructures.Week01.tree_height().run();
+                    new DataStructures.Week01.treeheight().run();
                 } catch (IOException e) {
                 }
             }
@@ -87,10 +88,9 @@ class BinaryTree {
     }
 
 
-
 }
 
- class tree_height {
+class treeheight {
     class FastScanner {
         StringTokenizer tok = new StringTokenizer("");
         BufferedReader in;
@@ -130,13 +130,12 @@ class BinaryTree {
 
         void computeHeight() {
             // Replace this code with a faster implementation
-            BinaryTree tree = new BinaryTree();
+            ArbitaryTreeHeight tree = new ArbitaryTreeHeight();
 
             System.out.println(tree.findHeight(parent, n));
 
         }
     }
-
 
 
     public void run() throws IOException {
