@@ -1,4 +1,4 @@
-package DataStructures.Week02;
+package DataStructures.Week03;
 
 /**
  * Created by Thiloshon on 21-Sep-16.

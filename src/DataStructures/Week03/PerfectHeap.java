@@ -1,4 +1,4 @@
-package DataStructures.Week02;
+package DataStructures.Week03;
 
 /**
  * Created by Thiloshon on 22-Sep-16.
@@ -6,6 +6,7 @@ package DataStructures.Week02;
  * DISCLAIMER:
  * This is a 1 indexed heap , not 0 indexed.
  * This is a min heap , not max heap.
+ *
  */
 public class PerfectHeap {
 
