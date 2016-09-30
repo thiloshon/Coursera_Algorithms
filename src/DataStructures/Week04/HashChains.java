@@ -3,6 +3,7 @@ package DataStructures.Week04;
 /**
  * Created by Thiloshon on 28-Sep-16.
  */
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,6 +16,7 @@ public class HashChains {
     private PrintWriter out;
     // store all strings in one list
     private List<String> elems;
+    private ArrayList<String>[] hashList;
     // for hash function
     private int bucketCount;
     private int prime = 1000000007;
@@ -28,7 +30,7 @@ public class HashChains {
         long hash = 0;
         for (int i = s.length() - 1; i >= 0; --i)
             hash = (hash * multiplier + s.charAt(i)) % prime;
-        return (int)hash % bucketCount;
+        return (int) hash % bucketCount;
     }
 
     private Query readQuery() throws IOException {
@@ -79,9 +81,10 @@ public class HashChains {
         in = new FastScanner();
         out = new PrintWriter(new BufferedOutputStream(System.out));
         bucketCount = in.nextInt();
+        hashList = new ArrayList[bucketCount];
         int queryCount = in.nextInt();
         for (int i = 0; i < queryCount; ++i) {
-            processQuery(readQuery());
+            processQueryEfficient(readQuery());
         }
         out.close();
     }
@@ -120,6 +123,58 @@ public class HashChains {
 
         public int nextInt() throws IOException {
             return Integer.parseInt(next());
+        }
+    }
+
+    private void processQueryEfficient(Query query) {
+        switch (query.type) {
+            case "add":
+                int tempIndex = hashFunc(query.s);
+                if (!(hashList[tempIndex] == null)) {
+                    boolean check = false;
+                    for (String str : hashList[tempIndex]) {
+                        if (str.equals(query.s)) {
+                            check = true;
+                            break;
+                        }
+                    }
+                    if (!check) {
+                        hashList[tempIndex].add(0, query.s);
+                    }
+                } else {
+                    hashList[tempIndex] = new ArrayList<>();
+                    hashList[tempIndex].add(query.s);
+                }
+                break;
+            case "del":
+                tempIndex = hashFunc(query.s);
+                if (!(hashList[tempIndex] == null)) {
+                    if (hashList[tempIndex].contains(query.s))
+                        hashList[tempIndex].remove(query.s);
+                }
+                break;
+            case "find":
+                tempIndex = hashFunc(query.s);
+                //if (!(hashList[tempIndex] == null)) {
+                try {
+                    writeSearchResult(hashList[tempIndex].contains(query.s));
+                } catch (NullPointerException r) {
+                    writeSearchResult(false);
+                }
+                break;
+            case "check":
+                try {
+                    for (String cur : hashList[query.ind]) {
+                        out.print(cur + " ");
+                    }
+                } catch (NullPointerException r) {
+                }
+                out.println();
+                // Uncomment the following if you want to play with the program interactively.
+                // out.flush();
+                break;
+            default:
+                throw new RuntimeException("Unknown query: " + query.type);
         }
     }
 }
