@@ -8,11 +8,11 @@ import java.io.*;
 import java.util.Locale;
 import java.util.StringTokenizer;
 
-public class MergingTables {
+public class MergingTablesQuiz {
     private final InputReader reader;
     private final OutputWriter writer;
 
-    public MergingTables(InputReader reader, OutputWriter writer) {
+    public MergingTablesQuiz(InputReader reader, OutputWriter writer) {
         this.reader = reader;
         this.writer = writer;
     }
@@ -20,7 +20,7 @@ public class MergingTables {
     public static void main(String[] args) {
         InputReader reader = new InputReader(System.in);
         OutputWriter writer = new OutputWriter(System.out);
-        new MergingTables(reader, writer).runAlternate();
+        new MergingTablesQuiz(reader, writer).runAlternate();
         writer.writer.flush();
     }
 
@@ -28,10 +28,12 @@ public class MergingTables {
         Table parent;
         int rank;
         int numberOfRows;
+        int index;
 
-        Table(int numberOfRows) {
+        Table(int numberOfRows, int index) {
             this.numberOfRows = numberOfRows;
             rank = 0;
+            this.index=index;
             parent = this;
         }
 
@@ -40,7 +42,7 @@ public class MergingTables {
             if (parent != this) {
                 parent = parent.getParent();
             }
-            System.out.print(parent.rank+" ");
+            System.out.print(parent.index+" ");
             return parent;
         }
     }
@@ -57,13 +59,13 @@ public class MergingTables {
         // use rank heuristic
         // update maximumNumberOfRows
         if (realDestination.rank > realSource.rank) {
-            realSource.parent = realDestination;
+            source.parent = destination;
             realDestination.numberOfRows = realSource.numberOfRows + realDestination.numberOfRows;
             if (realDestination.numberOfRows > maximumNumberOfRows) {
                 maximumNumberOfRows = realDestination.numberOfRows;
             }
         } else {
-            realDestination.parent = realSource;
+            destination.parent = source;
             if (realDestination.rank == realSource.rank) {
                 realSource.rank++;
             }
@@ -74,22 +76,62 @@ public class MergingTables {
         }
     }
 
-    public void run() {
-        int n = reader.nextInt();
+
+    public void runAlternate2() {
+        //int n = 13;
         int m = reader.nextInt();
-        Table[] tables = new Table[n];
-        for (int i = 0; i < n; i++) {
-            int numberOfRows = reader.nextInt();
-            tables[i] = new Table(numberOfRows);
+        Table[] tables = new Table[m+1];
+        for (int i = 0; i <= m; i++) {
+            int numberOfRows = 1;
+            tables[i] = new Table(numberOfRows, i);
             maximumNumberOfRows = Math.max(maximumNumberOfRows, numberOfRows);
         }
-        for (int i = 0; i < m; i++) {
-            int destination = reader.nextInt() - 1;
-            int source = reader.nextInt() - 1;
+        for (int i = 1; i <= m-1; i++) {
+            int destination = i;
+            int source = i+1;
             merge(tables[destination], tables[source]);
-            writer.printf("%d\n", maximumNumberOfRows);
+            //writer.printf("%d\n", maximumNumberOfRows);
         }
+        /*for (int i = 1; i <= 20; i++) {
+            int destination = i;
+            int source = 3*i;
+            merge(tables[destination], tables[source]);
+            //writer.printf("%d\n", maximumNumberOfRows);
+        }
+        for (int i = 1; i <= 12; i++) {
+            int destination = i;
+            int source = 5*i;
+            merge(tables[destination], tables[source]);
+            //writer.printf("%d\n", maximumNumberOfRows);
+        }*/
+        /*merge(tables[2], tables[10]);
+        merge(tables[7], tables[5]);
+        merge(tables[6], tables[1]);
+        merge(tables[3], tables[4]);
+        merge(tables[5], tables[11]);
+        merge(tables[7], tables[8]);
+        merge(tables[7], tables[3]);
+        merge(tables[12], tables[2]);
+        merge(tables[9], tables[6]);*/
+
+        /*System.out.println("hjjh");
+        System.out.println(tables[6].getParent().index);
+        System.out.println(tables[3].getParent().index);
+        System.out.println(tables[11].getParent().index);
+        System.out.println(tables[9].getParent().index);
+*/
+
+        System.out.println("Following is trace back ");
+        for(Table tb: tables){
+            tb.getParent();
+            System.out.println("");
+        }
+        /*for(Table tb: tables){
+            tb.getParent();
+            System.out.println("");
+        }*/
     }
+
 
     public void runAlternate() {
         int n = 61;
@@ -97,7 +139,7 @@ public class MergingTables {
         Table[] tables = new Table[n];
         for (int i = 0; i < n; i++) {
             int numberOfRows = 1;
-            tables[i] = new Table(numberOfRows);
+            tables[i] = new Table(numberOfRows, i);
             maximumNumberOfRows = Math.max(maximumNumberOfRows, numberOfRows);
         }
         for (int i = 1; i <= 30; i++) {
@@ -125,22 +167,23 @@ public class MergingTables {
         }
     }
 
-    public void runAlternate2() {
-        int n = 61;
+
+    public void runAlternate3() {
+        int n = 13;
         //int m = reader.nextInt();
         Table[] tables = new Table[n+1];
         for (int i = 0; i <= n; i++) {
             int numberOfRows = 1;
-            tables[i] = new Table(numberOfRows);
+            tables[i] = new Table(numberOfRows, i);
             maximumNumberOfRows = Math.max(maximumNumberOfRows, numberOfRows);
         }
-        for (int i = 1; i <= 30; i++) {
+        /*for (int i = 1; i <= m-1; i++) {
             int destination = i;
-            int source = 2*1;
+            int source = i+1;
             merge(tables[destination], tables[source]);
             //writer.printf("%d\n", maximumNumberOfRows);
-        }
-        for (int i = 1; i <= 20; i++) {
+        }*/
+        /*for (int i = 1; i <= 20; i++) {
             int destination = i;
             int source = 3*i;
             merge(tables[destination], tables[source]);
@@ -151,8 +194,8 @@ public class MergingTables {
             int source = 5*i;
             merge(tables[destination], tables[source]);
             //writer.printf("%d\n", maximumNumberOfRows);
-        }
-        /*merge(tables[2], tables[10]);
+        }*/
+        merge(tables[2], tables[10]);
         merge(tables[7], tables[5]);
         merge(tables[6], tables[1]);
         merge(tables[3], tables[4]);
@@ -160,7 +203,7 @@ public class MergingTables {
         merge(tables[7], tables[8]);
         merge(tables[7], tables[3]);
         merge(tables[12], tables[2]);
-        merge(tables[9], tables[6]);*/
+        merge(tables[9], tables[6]);
 
         //System.out.println(tables[6].getParent());
 
@@ -168,14 +211,13 @@ public class MergingTables {
         System.out.println("Following is trace back ");
         for(Table tb: tables){
             tb.getParent();
-            //System.out.println("");
+            System.out.println("");
         }
         /*for(Table tb: tables){
             tb.getParent();
             System.out.println("");
         }*/
     }
-
 
     static class InputReader {
         public BufferedReader reader;
