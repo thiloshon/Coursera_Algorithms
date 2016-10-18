@@ -1,13 +1,17 @@
 package DataStructures.Week06;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.Random;
+import java.util.Stack;
+import java.util.StringTokenizer;
+
 /**
- * Created by Thiloshon on 11-Oct-16.
+ * Created by Thiloshon on 16-Oct-16.
  */
-
-import java.io.*;
-import java.util.*;
-
-class RopeProblem {
+public class runtimetest {
 
     class Rope {
         String s;
@@ -18,42 +22,75 @@ class RopeProblem {
     }
 
     public static void main(String[] args) throws IOException {
-        new RopeProblem().run();
+        new runtimetest().run();
+    }
+
+    protected String getSaltString(int no) {
+        String SALTCHARS = "qwertyuioplkjhgfdsazxcvbnm";
+        StringBuilder salt = new StringBuilder();
+        Random rnd = new Random();
+        while (salt.length() < no) {
+            int index = (int) (rnd.nextFloat() * SALTCHARS.length());
+            salt.append(SALTCHARS.charAt(index));
+        }
+        String saltStr = salt.toString();
+        return saltStr;
+
     }
 
     public void run() throws IOException {
-        FastScanner in = new FastScanner();
-        PrintWriter out = new PrintWriter(System.out);
-        String st = in.next();
-        Rope rope = new Rope(st);
-        Vertex vt = new Vertex(0, 0, null, null, null, st.charAt(0));
-        root = vt;
-        for (int x = 1; x < st.length(); x++) {
-            insert(x, st.charAt(x));
-        }
+        while (true) {
 
-        //inOrderTraversal(0, root, new StringBuilder());
+            //int desh = (int) Math.random() * 1000+1;
+            String st = getSaltString(300000);
 
-        for (int q = in.nextInt(); q > 0; q--) {
-            int i = in.nextInt();
-            int j = in.nextInt();
-
-            int k = in.nextInt();
-
-            //rope.process(i, j, k);
-
-
-            if (k >= j) {
-                ReAlign(i, j, k);
-            } else {
-                ReAlign2(i, j, k);
+            //System.out.println(st);
+            Rope rope = new Rope(st);
+            Vertex vt = new Vertex(0, 0, null, null, null, st.charAt(0));
+            root = vt;
+            for (int x = 1; x < st.length(); x++) {
+                insert(x, st.charAt(x));
             }
-            /*System.out.println("Entering");
-            inOrderTraversal(0, root, new char[st.length()]);
-            System.out.println("Finished");*/
+
+
+            int q = 100000;
+            System.out.println(q);
+
+            for (q = q; q > 0; q--) {
+                int i = (int) (Math.random() * 10000000) % st.length();
+                int j = 0;
+                while (j < i) {
+                    j = (int) (Math.random() * 10000000) % st.length();
+                }
+
+                int k = st.length();
+
+                int sub = st.length() - (j - i + 1);
+                while (k > sub) {
+                    k = (int) (Math.random() * 10000000) % st.length();
+                }
+                System.out.println(q);
+                if (q%100==0){
+                    //System.out.println(q);
+                }
+
+
+                //System.out.println(i + " " + j + " " + k);
+
+                //rope.process(i, j, k);
+
+
+                if (k >= j) {
+                    ReAlign(i, j, k);
+                } else {
+                    ReAlign2(i, j, k);
+                }
+            }
+
+            inorder();
         }
 
-        inorder();
+
     }
 
     class FastScanner {
@@ -203,10 +240,6 @@ class RopeProblem {
             }
         }
         root = splay(last);
-       /* inOrderTraversal(0,root,new StringBuilder());
-        System.out.println("");
-        inOrderTraversal(0,next,new StringBuilder());
-        System.out.println("Done");*/
         return new VertexPair(next, root);
     }
 
@@ -272,6 +305,7 @@ class RopeProblem {
         Vertex left = leftMiddle.left;
         middle = leftMiddle.right;
 
+        System.out.println("All Split done");
         /*System.out.println("-----left-----");
         inOrderTraversal(0, left, new char[10]);
         System.out.println("-----midddle-----");
@@ -302,6 +336,7 @@ class RopeProblem {
         inOrderTraversal(0, pivotRight, new char[10]);
         System.out.println("--------");*/
 
+        System.out.println("All update done");
         root = merge(middle, pivotRight);
         /*System.out.println("Checking mid way 01");
         inOrderTraversal(0, root, new char[10]);*/
@@ -373,8 +408,8 @@ class RopeProblem {
 
 
             root = merge(left, merge(pivotLeft, merge(middle, pivotRight)));
-        }else{
-            VertexPair leftMiddle = split(root, pivot+to-from+1);
+        } else {
+            VertexPair leftMiddle = split(root, pivot + to - from + 1);
             Vertex pivotRight = leftMiddle.right;
             Vertex middle2 = leftMiddle.left;
             VertexPair middleRight = split(middle2, to + 1);
@@ -385,15 +420,15 @@ class RopeProblem {
             Vertex left = pivoting.left;
             Vertex middle = pivoting.right;
 
-            int updateValue = (pivot - from );
+            int updateValue = (pivot - from);
             //inOrderUpdate(updateValue, middle);
-            inorderupdate(middle,updateValue);
+            inorderupdate(middle, updateValue);
             //inOrderUpdate(updateValue, pivotRight);
 
 
-            int updateValue2 = -(to - from +1);
+            int updateValue2 = -(to - from + 1);
             //inOrderUpdate(updateValue2, pivotLeft);
-            inorderupdate(pivotLeft,updateValue2);
+            inorderupdate(pivotLeft, updateValue2);
             root = merge(left, merge(pivotLeft, merge(middle, pivotRight)));
 
         }
@@ -422,7 +457,7 @@ class RopeProblem {
 
             // visit the top node
             node = stack.pop();
-            //System.out.print(node.character);
+
             sb.append(node.character);
             if (node.right != null) {
                 node = node.right;
@@ -434,7 +469,6 @@ class RopeProblem {
                 }
             }
         }
-
         System.out.println(sb);
     }
 
@@ -458,7 +492,7 @@ class RopeProblem {
 
             // visit the top node
             node = stack.pop();
-            node.key+=value;
+            node.key += value;
             if (node.right != null) {
                 node = node.right;
 
@@ -470,173 +504,4 @@ class RopeProblem {
             }
         }
     }
-
-    /*char[]*/StringBuilder inOrderTraversal(int total, Vertex vertex, /*char[] arr*/StringBuilder sb) {
-
-        long num = -9;
-        long num2 = -9;
-        long num3 = -9;
-        long num4 = -9;
-        long num5 = -9;
-        char num11 = '.';
-        char num22 = '.';
-        char num33 = '.';
-        char num44 = '.';
-        char num55 = '.';
-        try {
-            num = vertex.key;
-            num11 = vertex.character;
-        } catch (NullPointerException t) {
-        }
-        try {
-            num2 = vertex.parent.key;
-            num22 = vertex.parent.character;
-        } catch (NullPointerException t) {
-        }
-        try {
-            num33 = vertex.left.character;
-            num3 = vertex.left.key;
-        } catch (NullPointerException t) {
-        }
-        try {
-            num44 = vertex.right.character;
-            num4 = vertex.right.key;
-        } catch (NullPointerException t) {
-        }
-        try {
-            //num5 = vertex.sum;
-        } catch (NullPointerException t) {
-        }
-
-        try {
-            System.out.println("Accessing : " + num + " " + " of char " + num11 + ", " + num2 + " " + " of char " + num22 + ", " + num3 + " of char " + num33 + ", " + num4 + " of char " + num44 + " and sum is " + num5);
-        } catch (NullPointerException t) {
-
-        }
-        //System.out.println(vertex.key);
-        try {
-            //sb.insert((int)vertex.key, vertex.character);
-            //sb.append(vertex.character, (int)vertex.key,(int)vertex.key);
-            //arr[(int) vertex.key] = vertex.character;
-        } catch (NullPointerException e) {
-
-        }
-        Vertex left = null;
-        Vertex right = null;
-
-        if (vertex != null) {
-            try {
-                left = vertex.left;
-            } catch (NullPointerException e) {
-                left = null;
-            }
-            try {
-                right = vertex.right;
-            } catch (NullPointerException e) {
-                right = null;
-            }
-
-            if (left == null && right == null) {
-                total += vertex.key;
-
-                return sb;
-            }
-
-            if (left != null) {
-                total += vertex.key;
-                inOrderTraversal(total, left, sb);
-            }
-            if (right != null) {
-                total += vertex.key;
-                inOrderTraversal(total, right, sb);
-            }
-        }
-
-
-        return sb;
-    }
-    void inOrderUpdate(int value, Vertex vertex) {
-
-        Vertex left = null;
-        Vertex right = null;
-
-        try {
-            vertex.key += value;
-        } catch (NullPointerException e) {
-        }
-        if (vertex != null) {
-            try {
-                left = vertex.left;
-            } catch (NullPointerException e) {
-                left = null;
-            }
-            try {
-                right = vertex.right;
-            } catch (NullPointerException e) {
-                right = null;
-            }
-            if (left == null && right == null) {
-                return;
-            }
-            if (left != null) {
-                inOrderUpdate(value, left);
-            }
-            if (right != null) {
-                inOrderUpdate(value, right);
-            }
-        }
-        return;
-    }
 }
-    /*void process(int i, int j, int k) {
-        // Replace this code with a faster implementation
-        String t = s.substring(0, i) + s.substring(j + 1);
-        s = t.substring(0, k) + s.substring(i, j + 1) + t.substring(k);
-    }
-
-    void processEfficient(int i, int j, int k) {
-
-    }
-
-    String result() {
-        return s;
-    }*/
-
-
-/*char[] arr = new char[st.length()];
-        StringBuilder sb = inOrderTraversal(0, root, new StringBuilder(st.length()));
-        String stsdf = "";
-
-        System.out.println(sb);*/
-
-
-        /*for (int x = 0; x < st.length(); x++) {
-
-
-            System.out.print(arr[x]);
-            //stsdf+=arr[x];
-            *//*System.out.println(find(root,x).right.character);*//*
-           *//* VertexPair vtd = find(root, x);
-            root=vtd.right;
-            splay(vtd.left);
-            //System.out.print(root.character);
-            System.out.println("------------");
-            inOrderTraversal(0, root);
-            System.out.println("------------");*//*
-        }*/
-
-
-//out.println(rope.result());
-//System.out.println(stsdf);
-//out.close();
-
-  /*VertexPair leftMiddle = split(root, from);
-        Vertex left = leftMiddle.left;
-        Vertex middle = leftMiddle.right;
-        VertexPair middleRight = split(middle, to + 1);
-        middle = middleRight.left;
-        Vertex right = middleRight.right;
-
-        VertexPair pivoting = split(right, ((pivot + 1) + (to - from + 1)) - 1);
-        Vertex pivotLeft = pivoting.left;
-        Vertex pivotRight = pivoting.right;*/
