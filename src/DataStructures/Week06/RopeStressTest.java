@@ -63,17 +63,20 @@ class RopeStressTest {
         while (true) {
 
             //int desh = (int) Math.random() * 1000+1;
+            long startTime = System.currentTimeMillis();
             String st = getSaltString(300000);
 
             System.out.println(st);
             Rope rope = new Rope(st);
             Vertex vt = new Vertex(0, 0, null, null, null, st.charAt(0));
             root = vt;
-            for (int x = 1; x < st.length(); x++) {
-                insert(x, st.charAt(x));
+            insert(st);
+            /*for (int x = 1; x < st.length(); x++) {
+                //insert(x, st.charAt(x));
+
                 if(x%1000==0)
                 System.out.println(x);
-            }
+            }*/
 
             int q = (int) (Math.random() * 10);
             q = 100000;
@@ -119,7 +122,7 @@ class RopeStressTest {
             /*for (int x = 0; x < st.length(); x++) {
                 stsdf += arr[x];
             }*/
-            //String and = rope.result();
+            String and = rope.result();
             System.out.println(stsdf);
 
             /*if (!and.equals(stsdf)) {
@@ -129,6 +132,10 @@ class RopeStressTest {
                 System.out.println(" and Done! " + " and the ans1 is " + and + " and ans2 is " + stsdf);
                 System.out.println("");
             }*/
+
+            long endTime = System.currentTimeMillis();
+            long totalTime = endTime - startTime;
+            System.out.println("Second is " + totalTime / 1000);
         }
 
 
@@ -159,7 +166,7 @@ class RopeStressTest {
         // Sum of all the keys in the subtree - remember to update
         // it after each operation that changes the tree.
         char character;
-        long size;
+        //long size;
         Vertex left;
         Vertex right;
         Vertex parent;
@@ -174,7 +181,7 @@ class RopeStressTest {
             long num1;
             long num2;
 
-            this.size = key + 1;
+            //this.size = key + 1;
         }
     }
 
@@ -373,9 +380,12 @@ class RopeStressTest {
         System.out.println("--------");*/
 
         int updateValue = -(to - from + 1);
-        inOrderUpdate(updateValue, pivotLeft);
+        //inOrderUpdate(updateValue, pivotLeft);
+        inorder2(updateValue, pivotLeft);
         int updateValue2 = pivot - from;
-        inOrderUpdate(updateValue2, middle);
+        //inOrderUpdate(updateValue2, middle);
+        inorder2(updateValue2, middle);
+
         //inOrderUpdate(-updateValue, middle);
 
         /*System.out.println("And after updating,");
@@ -478,14 +488,17 @@ class RopeStressTest {
             System.out.println("--------");*/
 
             int updateValue = (to - from + 1);
-            inOrderUpdate(updateValue, middle);
+            //inOrderUpdate(updateValue, middle);
+            inorder2(updateValue, middle);
+
             //inOrderUpdate(updateValue, pivotRight);
             if (pivot < 0) {
                 pivot++;
             }
 
             int updateValue2 = -(from - pivot);
-            inOrderUpdate(updateValue2, pivotLeft);
+            //inOrderUpdate(updateValue2, pivotLeft);
+            inorder2(updateValue2, pivotLeft);
 
           /*  System.out.println("And after updating,");
 
@@ -514,12 +527,14 @@ class RopeStressTest {
             Vertex middle = pivoting.right;
 
             int updateValue = (pivot - from );
-            inOrderUpdate(updateValue, middle);
+            //inOrderUpdate(updateValue, middle);
+            inorder2(updateValue, middle);
             //inOrderUpdate(updateValue, pivotRight);
 
 
             int updateValue2 = -(to - from +1);
-            inOrderUpdate(updateValue2, pivotLeft);
+            inorder2(updateValue2, pivotLeft);
+            //inOrderUpdate(updateValue2, pivotLeft);
             root = merge(left, merge(pivotLeft, merge(middle, pivotRight)));
 
         }
@@ -558,6 +573,40 @@ class RopeStressTest {
             }
         }
         return;
+    }
+
+    void inorder2(int value, Vertex vertex) {
+        if (vertex == null) {
+            return;
+        }
+
+        //keep the nodes in the path that are waiting to be visited
+        Stack<Vertex> stack = new Stack<Vertex>();
+        Vertex node = vertex;
+
+        //first node to be visited will be the left one
+        while (node != null) {
+            stack.push(node);
+            node = node.left;
+        }
+
+        // traverse the tree
+        while (stack.size() > 0) {
+
+            // visit the top node
+            node = stack.pop();
+            node.key += value;
+            //System.out.print(node.data + " ");
+            if (node.right != null) {
+                node = node.right;
+
+                // the next node to be visited is the leftmost
+                while (node != null) {
+                    stack.push(node);
+                    node = node.left;
+                }
+            }
+        }
     }
 
     StringBuilder inorder() {
@@ -679,106 +728,52 @@ class RopeStressTest {
         return arr;
     }
 
-    VertexPair find2(Vertex root, int key) {
 
-        if (root == null) {
-            VertexPair vt = new VertexPair();
-            vt.left = null;
-            vt.right = null;
-            return vt;
-        }
-        long keys = root.key;
-        Vertex temp = root;
-        while (temp != null) {
-            keys = temp.key;
-            temp = temp.left;
-        }
-        long ke = key - keys + 1;
 
-        Vertex current = OrderStatistics(root, ke);
-        root = splay(current);
+    void insert(String st) {
 
-        if (root == null) {
-            VertexPair vt = new VertexPair();
-            vt.left = null;
-            vt.right = null;
-            return vt;
-        }
+        root = sortedArrayToBST(st, 0, st.length()-1);
 
-        if (root.key == key) {
-            return new VertexPair(root, root);
-        } else {
-            Vertex next = OrderStatistics(root, ke + 1);
-            return new VertexPair(next, root);
-        }
+
+        //inOrderTraversal(0,root);
 
     }
 
-    Vertex OrderStatistics(Vertex R, long k) {
-        //System.out.println(k);
-        long s = 0;
+    Vertex sortedArrayToBST(String st, int start, int end) {
 
-        if (R == null) {
+        /* Base Case */
+        if (start > end) {
             return null;
         }
 
+        /* Get the middle element and make it root */
+        int mid = (start + end) / 2;
+        Vertex node = new Vertex(mid, mid, null, null, null, st.charAt(mid));
 
-        while (true) {
-            try {
-                s = R.left.size;
-            } catch (NullPointerException e) {
-                s = 0;
-            }
-            if (k == s + 1) {
-                return R;
-            } else if (k < s + 1) {
-                if (R.left != null) {
-                    R = R.left;
-                } else {
-                    return R;
-                }
-            } else if (k > s + 1) {
-                //try{
-                Vertex vt = null;
-                try {
-                    vt = R.right;
-                    //System.out.println(R);
-                } catch (NullPointerException r) {
-                    //System.out.println("bum");
-                }
-                if (vt != null) {
-                    R = R.right;
-                    k = k - s - 1;
-                } else {
-                    if (k == R.size || k == R.size + 1) {
-                        return R;
-                    } else {
-                        return null;
-                    }
-                }
-            }
-        }
-    }
+        /* Recursively construct the left subtree and make it
+         left child of root */
+        Vertex vt = sortedArrayToBST(st, start, mid - 1);
+        try{
+            vt.parent = node;
+        }catch (NullPointerException e){
 
-    VertexPair split2(Vertex root, int key) {
-        VertexPair result = new VertexPair();
-        VertexPair findAndRoot = find(root, key);
-        root = findAndRoot.right;
-        result.right = findAndRoot.left;
-        if (result.right == null) {
-            result.left = root;
-            return result;
         }
-        result.right = splay(result.right);
-        result.left = result.right.left;
-        result.right.left = null;
-        if (result.left != null) {
-            result.left.parent = null;
+        node.left = vt;
+
+
+        /* Recursively construct the right subtree and make it
+         right child of root */
+        vt = sortedArrayToBST(st, mid + 1, end);
+        try{
+            vt.parent = node;
+        }catch (NullPointerException e){
+
         }
-        update(result.left);
-        update(result.right);
-        //inOrderTraversal(0, result);
-        return result;
+
+        node.right = vt;
+
+
+        return node;
     }
 }
 

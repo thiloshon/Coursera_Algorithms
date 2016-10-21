@@ -4,7 +4,6 @@ package DataStructures.Week06;
  * Created by Thiloshon on 17-Oct-16.
  */
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 
 import java.io.*;
 import java.util.*;
@@ -22,9 +21,11 @@ class RopeModified {
 
         Vertex vt = new Vertex(0, 0, null, null, null, st.charAt(0));
         root = vt;
-        for (int x = 1; x < st.length(); x++) {
-            insert(x, st.charAt(x));
-        }
+        insertLooya(st);
+        /*for (int x = 1; x < st.length(); x++) {
+            //insert(x, st.charAt(x));
+
+        }*/
 
         //inOrderTraversal(0, root);
 
@@ -102,7 +103,7 @@ class RopeModified {
 
             this.size = num1 + num2 + 1;*/
 
-            this.size = key + 1;
+            //this.size = key + 1;
         }
     }
 
@@ -213,7 +214,7 @@ class RopeModified {
     // then result is null.
     VertexPair find(Vertex root, int key) {
 
-        if (root == null){
+        if (root == null) {
             VertexPair vt = new VertexPair();
             vt.left = null;
             vt.right = null;
@@ -221,27 +222,28 @@ class RopeModified {
         }
         long keys = root.key;
         Vertex temp = root;
-        while(temp!=null){
+        while (temp != null) {
+            System.out.println();
             keys = temp.key;
             temp = temp.left;
         }
-        long ke = key - keys +1 ;
+        long ke = key - keys + 1;
 
         Vertex current = OrderStatistics(root, ke);
         root = splay(current);
         //System.out.println("Heheheh");
         //inOrderTraversal(0, root);
 
-        if (root==null){
+        if (root == null) {
             VertexPair vt = new VertexPair();
             vt.left = null;
             vt.right = null;
             return vt;
         }
 
-        if (root.key == key){
+        if (root.key == key) {
             return new VertexPair(root, root);
-        }else{
+        } else {
             Vertex next = OrderStatistics(root, ke + 1);
             return new VertexPair(next, root);
         }
@@ -305,7 +307,7 @@ class RopeModified {
         //System.out.println(k);
         long s = 0;
 
-        if (R==null){
+        if (R == null) {
             return null;
         }
 
@@ -340,7 +342,7 @@ class RopeModified {
                 } else {
                     //System.out.println("im in");
                     //System.out.println(k + " " +R.key);
-                    if (k == R.size || k == R.size + 1 ) {
+                    if (k == R.size || k == R.size + 1) {
                         return R;
                     } else {
                         return null;
@@ -351,15 +353,15 @@ class RopeModified {
     }
 
     VertexPair split(Vertex root, int key) {
-       // System.out.println("Searching for " + key + " in tree ");
-       //inOrderTraversal(0, root);
+        // System.out.println("Searching for " + key + " in tree ");
+        //inOrderTraversal(0, root);
         VertexPair result = new VertexPair();
         VertexPair findAndRoot = find(root, key);
         //System.out.println("Right is ");
-       // inOrderTraversal(0, findAndRoot.right);
-       // System.out.println("And left is ");
+        // inOrderTraversal(0, findAndRoot.right);
+        // System.out.println("And left is ");
         //inOrderTraversal(0, findAndRoot.left);
-       // System.out.println("THanks");
+        // System.out.println("THanks");
         root = findAndRoot.right;
         result.right = findAndRoot.left;
         if (result.right == null) {
@@ -375,7 +377,7 @@ class RopeModified {
         update(result.left);
         update(result.right);
         //System.out.println("bumbum");
-       // inOrderTraversal(0, result.right);
+        // inOrderTraversal(0, result.right);
         return result;
     }
 
@@ -404,7 +406,16 @@ class RopeModified {
 
     }
 
-    void insert(int x, char ch) {
+    /*void insert(String st) {
+
+        root = sortedArrayToBST(st, 0, st.length()-1);
+
+        postOrder(root);
+
+
+    }*/
+
+    void insertNode(int x, char ch) {
         Vertex left = null;
         Vertex right = null;
         Vertex new_vertex = null;
@@ -415,6 +426,174 @@ class RopeModified {
             new_vertex = new Vertex(x, x, null, null, null, ch);
         }
         root = merge(merge(left, new_vertex), right);
+    }
+
+    void insertLooya(String st){
+
+        root = sortedArrayToBST(null, 0, st.length()-1, st);
+        postOrder(root);
+        //inOrderTraversal(0,root);
+
+    }
+
+    /* A function that constructs Balanced Binary Search Tree
+     from a sorted array */
+    Vertex sortedArrayToBST(Vertex arr, int start, int end, String st) {
+
+
+        /* Base Case */
+        if (start > end) {
+            return null;
+        }
+
+        /* Get the middle element and make it root */
+        int mid = (start + end) / 2;
+        Vertex node = new Vertex(mid, mid, null, null, arr, st.charAt(mid));
+        //node.parent = arr;
+        //System.out.println(mid);
+
+        /* Recursively construct the left subtree and make it
+         left child of root */
+        node.left = sortedArrayToBST(node, start, mid - 1, st);
+
+        /* Recursively construct the right subtree and make it
+         right child of root */
+        node.right = sortedArrayToBST(node, mid + 1, end, st);
+
+        return node;
+    }
+
+    void insert(String st) {
+
+        RopeModified tree = new RopeModified();
+        int arr[] = new int[st.length()];
+        for(int x =0; x<st.length(); x++){
+            arr[x]=x;
+        }
+        int n = arr.length;
+        rootNode = tree.sortedArrayToBST(arr, 0, n - 1);
+        //System.out.println("Preorder traversal of constructed BST");
+        ArrayList<Integer> arr4 = new ArrayList();
+        tree.preOrder(rootNode, arr4);
+        //System.out.println("Preorder traversal of constructed BST Done");
+
+        for(int x:arr4){
+            //System.out.print(x+" ");
+            insertNode(x, st.charAt(x));
+        }
+
+    }
+    static Node rootNode;
+
+    /* A function that constructs Balanced Binary Search Tree
+     from a sorted array */
+    Node sortedArrayToBST(int arr[], int start, int end) {
+
+
+        /* Base Case */
+        if (start > end) {
+            return null;
+        }
+
+        /* Get the middle element and make it root */
+        int mid = (start + end) / 2;
+        Node node = new Node(arr[mid]);
+        //System.out.println(mid);
+
+        /* Recursively construct the left subtree and make it
+         left child of root */
+        node.left = sortedArrayToBST(arr, start, mid - 1);
+
+        /* Recursively construct the right subtree and make it
+         right child of root */
+        node.right = sortedArrayToBST(arr, mid + 1, end);
+
+        return node;
+    }
+
+    /* A utility function to print preorder traversal of BST */
+    void preOrder(Node node, ArrayList arr ) {
+        if (node == null) {
+            return;
+        }
+        //System.out.print(node.data + " ");
+        arr.add(node.data);
+        preOrder(node.left, arr);
+        preOrder(node.right, arr);
+    }
+
+    class Node {
+
+        int data;
+        Node left, right;
+
+        Node(int d) {
+            data = d;
+            left = right = null;
+        }
+    }
+
+    Vertex sortedArrayToBST(String st, int start, int end) {
+
+        /* Base Case */
+        if (start > end) {
+            return null;
+        }
+
+        /* Get the middle element and make it root */
+        int mid = (start + end) / 2;
+        Vertex node = new Vertex(mid, mid, null, null, null, st.charAt(mid));
+
+        /* Recursively construct the left subtree and make it
+         left child of root */
+        Vertex vt = sortedArrayToBST(st, start, mid - 1);
+        try{
+            vt.parent = node;
+        }catch (NullPointerException e){
+
+        }
+        node.left = vt;
+
+
+        /* Recursively construct the right subtree and make it
+         right child of root */
+        vt = sortedArrayToBST(st, mid + 1, end);
+        try{
+            vt.parent = node;
+        }catch (NullPointerException e){
+
+        }
+
+        node.right = vt;
+
+
+        /*System.out.println("-------------");
+        inOrderTraversal(0,root);
+        System.out.println("-------------");*/
+        return node;
+
+    }
+
+    public void postOrder(Vertex root) {
+        if (root != null) {
+            postOrder(root.left);
+            postOrder(root.right);
+            //Visit the node by Printing the node data
+            long num1;
+            long num2;
+            try{
+                num1 = root.left.size;
+            }catch (NullPointerException e){
+                num1=0;
+            }
+            try{
+                num2 = root.right.size;
+            }catch (NullPointerException e){
+                num2=0;
+            }
+            root.size = num1 + num2 + 1;
+            //System.out.println(root.size);
+        }
     }
 
     void ReAlign(int from, int to, int pivot) {
