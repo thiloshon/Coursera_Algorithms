@@ -90,10 +90,10 @@ public class JobQueue {
         for (int x = 0; x < jobs.length; x++) {
             int[] top = heap.peekMin();
             int[] temp = heap.changePriority(1, top[1] + jobs[x]);
-            assignedWorker[x] = top[0]-1;
+            assignedWorker[x] = top[0] - 1;
             startTime[x] = temp[1];
 
-System.out.println("--------------------");
+            System.out.println("--------------------");
             System.out.println("--------------------");
             for (int[] f : heap.data) {
                 System.out.println(f[0] + " " + f[1]);
@@ -102,7 +102,7 @@ System.out.println("--------------------");
 
         }
 
-System.out.println(heap.extractMin()[0]);
+        System.out.println(heap.extractMin()[0]);
         System.out.println(heap.extractMin()[0]);
         System.out.println(heap.extractMin()[0]);
 
@@ -173,7 +173,7 @@ class Heap {
             if (r <= data.length && data[r][1] < data[maxIndex][1]) {
                 maxIndex = r;
                 //System.out.println("in two inner");
-            }else if (r <= data.length && data[r][1] == data[maxIndex][1] && data[r][0] < data[maxIndex][0]) {
+            } else if (r <= data.length && data[r][1] == data[maxIndex][1] && data[r][0] < data[maxIndex][0]) {
                 maxIndex = r;
             }
         } catch (ArrayIndexOutOfBoundsException e) {
@@ -187,14 +187,14 @@ class Heap {
             data[maxIndex] = data[i];
             data[i] = tmp;
 
-            if (data[i][1] == data[i + 1][1] && data[i][0] > data[i + 1][0]&&(i%2==0)) {
+            if (data[i][1] == data[i + 1][1] && data[i][0] > data[i + 1][0] && (i % 2 == 0)) {
                 tmp = data[i];
                 data[i] = data[i + 1];
                 data[i + 1] = tmp;
             }
 
             //System.out.println("Inside");
-for (int[] g : data) {
+            for (int[] g : data) {
                 System.out.println(g[0] + " " + g[1]);
             }
             System.out.println("");
@@ -204,7 +204,7 @@ for (int[] g : data) {
         }
 
         try {
-            if (data[i][1] == data[i + 1][1] && data[i][0] > data[i + 1][0]&&(i%2==0)) {
+            if (data[i][1] == data[i + 1][1] && data[i][0] > data[i + 1][0] && (i % 2 == 0)) {
                 int[] tmp = data[i];
                 data[i] = data[i + 1];
                 data[i + 1] = tmp;
@@ -226,7 +226,7 @@ for (int[] g : data) {
 
         }
 
-for (int[] f : data) {
+        for (int[] f : data) {
             System.out.println(f[0] + " " + f[1]);
         }
         System.out.println("--------------------");
