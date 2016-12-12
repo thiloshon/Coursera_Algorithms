@@ -43,7 +43,7 @@ public class Bipartite {
         return 1;
     }
 
-    public static void main(String[] args) {
+    void run(){
         Scanner scanner = new Scanner(System.in);
         int n = scanner.nextInt();
         int m = scanner.nextInt();
@@ -61,7 +61,27 @@ public class Bipartite {
         System.out.println(bipartite(adj));
     }
 
-    static class Vertex {
+    public static void main(String[] args) {
+        Bipartite b = new Bipartite();
+        b.run();
+        /*Scanner scanner = new Scanner(System.in);
+        int n = scanner.nextInt();
+        int m = scanner.nextInt();
+        Vertex[] adj = (Vertex[]) new Vertex[n];
+        for (int i = 0; i < n; i++) {
+            adj[i] = new Vertex(i);
+        }
+        for (int i = 0; i < m; i++) {
+            int x, y;
+            x = scanner.nextInt();
+            y = scanner.nextInt();
+            adj[x - 1].array.add(y - 1);
+            adj[y - 1].array.add(x - 1);
+        }
+        System.out.println(bipartite(adj));*/
+    }
+
+     class Vertex {
         int num;
         boolean reached = false;
         int distance = -1;
