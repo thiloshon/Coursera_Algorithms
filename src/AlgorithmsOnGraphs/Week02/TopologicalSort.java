@@ -9,6 +9,7 @@ import java.util.Stack;
  */
 public class TopologicalSort {static public boolean hasCycle = false;
 
+    static public ArrayList<Integer> arr = new ArrayList<>();
 
     private static void acyclic(Vertex[] adj) {
         //write your code here
@@ -17,6 +18,10 @@ public class TopologicalSort {static public boolean hasCycle = false;
             if (!adj[x].reached){
                 Explore(adj[x], adj, stack);
             }
+        }
+
+        for(int x = arr.size()-1; x>=0; x--){
+            System.out.print(arr.get(x)+" ");
         }
 
     }
@@ -58,13 +63,15 @@ public class TopologicalSort {static public boolean hasCycle = false;
             }
             verty.inStack=false;
             verty.reached=true;
-            System.out.println(verty.num+1);
+            arr.add(verty.num+1);
+            //System.out.println(verty.num+1);
             return;
 
         } else {
             verty.reached = true;
             verty.inStack=false;
-            System.out.println(verty.num+1);
+            arr.add(verty.num+1);
+            //System.out.println(verty.num+1);
             //Explore((Vertex) stack.pop(), adj, stack);
             return;
         }

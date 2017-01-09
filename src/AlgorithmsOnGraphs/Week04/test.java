@@ -64,6 +64,9 @@ public class test {
     }
 
 
+    /**
+     *
+     */
     static class Vertex {
         int num;
         int distance = (int)Double.POSITIVE_INFINITY;

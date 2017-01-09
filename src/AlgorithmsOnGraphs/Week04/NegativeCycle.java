@@ -27,12 +27,12 @@ public class NegativeCycle {
             for (Vertex v : adj) {
                 //check = Relax(v, adj);
                 if(Relax(v, adj) == true){
-                    check = true;
+                    check = true; // checking if relaxation happened at all
                 }
             }
 
 
-            if (check && x == adj.length) {
+            if (check && x == adj.length) { // Checking if relaxation happened in the vth iteration
                 //System.out.println("im ok");
                 answer = true;
             }

@@ -13,6 +13,25 @@ public class StronglyConnected {
 
     private static int numberOfStronglyConnectedComponents(Vertex[] adj, Vertex[] adjReverse) {
         //write your code here
+
+        /*System.out.println("______________________________");
+        for(Vertex v: adj){
+            System.out.println(v.num);
+            for (int n : v.array){
+                System.out.print(n+ " ");
+            }
+            System.out.println("");
+        }
+        System.out.println("______________________________");
+        for(Vertex v: adjReverse){
+            System.out.println(v.num);
+            for (int n : v.array){
+                System.out.print(n+ " ");
+            }
+            System.out.println("");
+        }
+        System.out.println("______________________________");*/
+
         int ans = 0;
         ArrayList<Vertex> finalList = new ArrayList<>();
 
@@ -27,20 +46,39 @@ public class StronglyConnected {
         }
 
 
+        /*System.out.println("______________________________");
+        for(Vertex v: adj){
+            System.out.print(v.num);
+
+            System.out.println(" "+ v.postOrder);
+        }
+        System.out.println("______________________________");
+
+        for(Vertex v: finalList){
+            System.out.print(v.num);
+
+            System.out.println(" "+ v.postOrder);
+        }
+        System.out.println("______________________________");*/
+
+
         for (int x = finalList.size() - 1; x >= 0; x--) {
 
-            if (!finalList.get(x).scc) {
-                System.out.println("x is " + finalList.get(x).postOrder);
-                Explore2(finalList.get(x), adj, ans);
-            } else {
+            int num = finalList.get(x).num;
+
+            if (!adj[num].scc) {
+                //System.out.println("x is " + adj[num].postOrder);
+                Explore2(num, adj, ans);
                 ans++;
+            } else {
+                //ans++;
             }
         }
 
-        for (Vertex v : adj) {
+       /* for (Vertex v : adj) {
             System.out.print(v.postOrder + " " + v.sccNum + "     ");
         }
-        System.out.println(" ");
+        System.out.println(" ");*/
 
         return ans;
     }
@@ -60,17 +98,17 @@ public class StronglyConnected {
         clock++;
     }
 
-    public static void Explore2(Vertex verty, Vertex[] adj, int numer) {
-        verty.scc = true;
-        verty.sccNum = numer;
-        for (Integer num : verty.array) {
+    public static void Explore2(int number, Vertex[] adj, int numer) {
+        adj[number].scc = true;
+        adj[number].sccNum = numer;
+        for (Integer num : adj[number].array) {
 
-            System.out.print("exploring " + verty.postOrder + "  " + verty.num + " ND Vlues ARE");
-            for (int m : verty.array) {
-                System.out.println("lol " + m);
-            }
+            /*System.out.println("exploring " + adj[num].postOrder + "  " + num + " and values are");
+            for (int m : adj[num].array) {
+                System.out.println(" " + m);
+            }*/
             if (!adj[num].scc) {
-                Explore2(adj[num], adj, numer);
+                Explore2(num, adj, numer);
             }
         }
 
@@ -85,6 +123,9 @@ public class StronglyConnected {
         Vertex[] adjReverse = (Vertex[]) new Vertex[n];
         for (int i = 0; i < n; i++) {
             adj[i] = new Vertex(i);
+        }
+        for (int i = 0; i < n; i++) {
+            adjReverse[i] = new Vertex(i);
         }
         for (int i = 0; i < m; i++) {
             int x, y;
