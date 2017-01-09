@@ -2,18 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="41c31d43-4e16-4929-b9b5-4489f9d09e4d" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths2.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths3.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPathsStressTest.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPathsStressTest2.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPathsv2.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week02/StronglyConnected.java" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week02/StronglyConnected.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week02/TopologicalSort.java" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week02/TopologicalSort.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/Dijkstra.java" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/Dijkstra.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/NegativeCycle.java" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/NegativeCycle.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths.java" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/test.java" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/test.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths2.java" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths2.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths3.java" afterPath="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths3.java" />
     </list>
     <ignored path="Coursera Algorithms.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -57,11 +48,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShortestPaths2.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ShortestPaths2.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-661">
-              <caret line="28" column="55" lean-forward="true" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+            <state relative-caret-position="272">
+              <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -69,11 +60,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ShortestPathsv2.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ShortestPathsv2.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPathsv2.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="461">
-              <caret line="81" column="16" lean-forward="true" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
+            <state relative-caret-position="187">
+              <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -106,8 +97,8 @@
       <file leaf-file-name="ShortestPaths3.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths3.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="88" column="0" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="88" selection-end-column="0" />
+            <state relative-caret-position="68">
+              <caret line="4" column="29" lean-forward="false" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#shortestPaths#0;class#ShortestPaths3#0" expanded="false" />
@@ -198,12 +189,12 @@
         <option value="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/NegativeCycle.java" />
         <option value="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/sdd.java" />
         <option value="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths.java" />
-        <option value="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths2.java" />
         <option value="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPathsStressTest.java" />
         <option value="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/gfg.java" />
-        <option value="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths3.java" />
         <option value="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPathsStressTest2.java" />
         <option value="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPathsv2.java" />
+        <option value="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths3.java" />
+        <option value="$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths2.java" />
       </list>
     </option>
   </component>
@@ -289,28 +280,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Week04" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Coursera Algorithms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Coursera Algorithms" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="AlgorithmsOnGraphs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Week03" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -928,7 +897,7 @@
       <workItem from="1483775551825" duration="3201000" />
       <workItem from="1483845009272" duration="24152000" />
       <workItem from="1483935380678" duration="17000" />
-      <workItem from="1483937977983" duration="5565000" />
+      <workItem from="1483937977983" duration="5643000" />
     </task>
     <task id="LOCAL-00001" summary="3rd Course Initial Commit">
       <created>1479533429581</created>
@@ -951,11 +920,18 @@
       <option name="project" value="LOCAL" />
       <updated>1481562047820</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="3rd Course 4th Week">
+      <created>1483952865162</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1483952865162</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="84561000" />
+    <option name="totallyTimeSpent" value="84639000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -1401,17 +1377,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths3.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="88" column="0" lean-forward="false" selection-start-line="15" selection-start-column="4" selection-end-line="88" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#shortestPaths#0;class#ShortestPaths3#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPathsStressTest2.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -1422,21 +1387,32 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths2.java">
+    <entry file="file://$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPathsv2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-661">
-          <caret line="28" column="55" lean-forward="true" selection-start-line="28" selection-start-column="55" selection-end-line="28" selection-end-column="55" />
+        <state relative-caret-position="187">
+          <caret line="14" column="32" lean-forward="true" selection-start-line="14" selection-start-column="32" selection-end-line="14" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths3.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="29" lean-forward="false" selection-start-line="4" selection-start-column="29" selection-end-line="4" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#shortestPaths#0;class#ShortestPaths3#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPathsv2.java">
+    <entry file="file://$PROJECT_DIR$/src/AlgorithmsOnGraphs/Week04/ShortestPaths2.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="461">
-          <caret line="81" column="16" lean-forward="true" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="16" />
-          <folding />
+        <state relative-caret-position="272">
+          <caret line="16" column="29" lean-forward="true" selection-start-line="16" selection-start-column="29" selection-end-line="16" selection-end-column="29" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

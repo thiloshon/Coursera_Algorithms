@@ -2,6 +2,7 @@ package AlgorithmsOnGraphs.Week04;
 
 /**
  * Created by Thiloshon on 08-Jan-17.
+ * code from github. not mine
  */
 
 import java.util.ArrayList;
